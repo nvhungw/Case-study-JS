@@ -1,12 +1,12 @@
 .product {
     width: 60%;
     margin: 0 auto;
-    border: 1px solid #79a1f0;
+    border: 1px solid  #79a1f0;
 }
 .product h3{
-    background-color: #79a1f0;
+    background-color: #68D69D;
+    color: #401D83;
     padding: 10px;
-    color: white;
     margin-top: 0;
 }
 
@@ -46,9 +46,9 @@
 }
 
 .product-list h3 {
-    background-color: #79a1f0;
+    background-color: #68D69D;
+    color: #401D83;
     padding: 10px;
-    color: white;
     margin-top: 0;
 }
 

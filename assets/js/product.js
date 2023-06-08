@@ -1,9 +1,10 @@
 
 class Product {
-    constructor(id, name, price, image) {
+    constructor(id, name, price, quantity, image) {
       this.id = id;
       this.name = name;
       this.price = price;
+      this.quantity = quantity;
       this.image = image;
     }
   }
@@ -32,8 +33,10 @@ class Product {
         let productEdit = this.products[productEditIndex];
         let productNameEl = document.querySelector('#productName');
         let productPriceEl = document.querySelector('#productPrice');
+        let productQuantityEl = document.querySelector('#productQuantity')
         productNameEl.value = productEdit.name;
         productPriceEl.value = productEdit.price;
+        productQuantityEl.value = productEdit.quantity;
       }
     }
   
@@ -60,7 +63,8 @@ class Product {
     showUpdateButton(){
       updateProductBtn.style.display = 'block'
     }
-  
+
+
     renderProducts() {
       let productList = document.querySelector('#productList');
       let productHtml = '';
@@ -73,6 +77,7 @@ class Product {
           <td><img src="${item.image}" width="60px" alt="" style="display:block; margin-left:auto; margin-right:auto"></td>
           <td style="text-align: center;">${item.name}</td>
           <td style="text-align: center;">${item.price}</td>
+          <td style="text-align: center;">${item.quantity}</td>
           <div >
             <td style="text-align: center;">
                 <button class="edit" data-id="${item.id}" style="border: 1px solid; border-radius: 15px; width: 60px; height: 25px">Edit</button>
@@ -120,12 +125,14 @@ class Product {
     createProduct() {
       let productNameEl = document.querySelector('#productName');
       let productPriceEl = document.querySelector('#productPrice');
+      let productQuantityEl = document.querySelector('#productQuantity');
       let idCreate = +this.products[this.products.length - 1].id + 1;
   
       let productNew = new Product(
         idCreate,
         productNameEl.value,
         productPriceEl.value,
+        productQuantityEl.value,
         imageLink
       );
 
@@ -152,9 +159,11 @@ class Product {
         this.renderProducts();
         productNameEl.value = '';
         productPriceEl.value = '';
+        productQuantityEl.value = '';
         error.innerHTML = '';
       }
     }
+
   
     handleUpdate() {
       if (this.updateProduct) {
@@ -163,13 +172,16 @@ class Product {
           let productUpdateNew = this.products[productEditIndex];
           let productNameEl = document.querySelector('#productName');
           let productPriceEl = document.querySelector('#productPrice');
+          let productQuantityEl = document.querySelector('#productQuantity');
           productUpdateNew.name = productNameEl.value;
           productUpdateNew.price = productPriceEl.value;
+          productUpdateNew.quantity = productQuantityEl.value;
   
           this.products[productEditIndex] = productUpdateNew;
           this.renderProducts();
           productNameEl.value = '';
           productPriceEl.value = '';
+          productQuantityEl.value = '';
           this.updateProduct = '';
         }
       }
@@ -178,9 +190,9 @@ class Product {
   
   let imageLink =
     'https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-den-thumb-600x600.jpg';
-  let product = new Product('1', 'IPhone', 1000, imageLink);
-  let product2 = new Product('2', 'IPhone2', 1000, imageLink);
+  let product = new Product('1', 'IPhone 13 Pro Max', 35000000, 1, imageLink);
   let app = new App();
+
   
   let createProductBtn = document.querySelector('#createProduct');
   createProductBtn.addEventListener('click', function () {
@@ -194,7 +206,6 @@ class Product {
   });
   
   app.addProduct(product);
-  app.addProduct(product2);
   app.renderProducts();
  
   
